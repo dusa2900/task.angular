@@ -1,0 +1,31 @@
+<form #employeeForm="ngForm" style="width: 800px;margin-left: 200px;">
+    {{employeeForm.value | json}}
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"> <strong>P R O J E C T &nbsp;&nbsp; I D</strong></label>
+        <input type="number" class="form-control " #projectId="ngModel" [class.is-invalid]="projectId.touched && projectId.invalid" required name="projectId" [(ngModel)]="emp.projectId">
+        <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Name is required</small>
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label"><strong>P R O J E C T &nbsp;&nbsp; N A M E</strong></label>
+        <input type="text" class="form-control" #projectName="ngModel" [class.is-invalid]="projectName.invalid && projectName.touched" required name="projectName" [(ngModel)]="emp.projectName">
+        <small class="text-danger" [class.d-none]="projectName.valid || projectName.untouched">Project Name is required</small>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label"><strong>P R O J E C T &nbsp;&nbsp; H E A D</strong></label>
+        <input type="text" class="form-control" #projectHead="ngModel" [class.is-invalid]="projectHead.invalid && projectHead.touched" required name="projectHead" [(ngModel)]="emp.projectHead">
+        <small class="text-danger" [class.d-none]="projectHead.valid || projectHead.untouched">Project Head is required</small>
+
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label"><strong>S T A R T &nbsp;&nbsp; D A T E</strong></label>
+        <input type="date" class="form-control" #startDate="ngModel" [class.is-invalid]="startDate.invalid && startDate.touched" required name="startDate" [(ngModel)]="emp.startDate">
+        <small class="text-danger" [class.d-none]="startDate.valid || startDate.untouched">Start Date is required</small>
+
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>&nbsp;
+        <button type="submit" class="btn btn-secondary">Cancel</button>
+    </div>
+
+</form>

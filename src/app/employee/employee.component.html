@@ -1,0 +1,92 @@
+
+<table class="table table-info table-striped">
+    <thead>
+   
+        <tr>
+            <th scope="col">Project-Id</th>
+            <th scope="col">Project_Name</th>
+            <th scope="col">Project-Head</th>
+            <th scope="col">Start Date</th>
+            <th scope="col" style="text-align: center;">Actions</th>
+        </tr>
+   
+    </thead>
+    <tbody class="fields">
+        <ng-container *ngFor='let x of  employees; let i = index' >
+            <tr  *ngIf="selected === i">
+                <td>
+                    <input type="number"name="projectId" #projectId="ngModel" [class.is-invalid]="projectId.invalid && projectId.touched" class="form-control " [(ngModel)]="x.projectId">
+                <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Project Id is required</small>
+                </td>
+                <td><input type="text" class="form-control" [(ngModel)]="x.projectName"></td>
+                <td><input  type="text"  class="form-control" [(ngModel)]="x.projectHead"></td>
+                <td><input type="date"  class="form-control" value={{x.projectId}} [(ngModel)]="x.StartDate"></td>
+                <td class="text-center">
+
+                    <button type="submit" class="btn btn-primary" >Update</button>
+                    &nbsp;
+                    <button class="btn btn-danger"  (click)="deleteProfile(x.projectId)"> Delete</button>
+                    &nbsp;
+                    <button class="btn btn-info" (click)="viewProfile(x.projectId)"  data-bs-toggle="modal" data-bs-target="#exampleModal"> View</button>
+                    &nbsp;
+                    <span style="cursor: pointer;" (click)="add()"><img style="width: 40px; height:40px" src="https://w7.pngwing.com/pngs/535/334/png-transparent-computer-icons-add-button-logo-number-add-button-thumbnail.png" alt=""></span>
+                  
+                </td>
+            </tr>
+            <tr *ngIf="selected !== i" >
+                <td>{{x.projectId}}</td>
+                <td>{{x.projectName}}</td>
+                <td>{{x.projectHead}}</td>
+                <td>{{x.startDate}}</td>
+                <td class="text-center">
+
+                    <button type="submit" class="btn btn-primary" (click)="selected = i"> Edit</button>
+                    &nbsp;
+                    <button type="submit" class="btn btn-danger" (click)="deleteProfile(x.projectId)"> Delete</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-info" (click)="viewProfile(x.projectId)"  data-bs-toggle="modal" data-bs-target="#exampleModal"> View</button>
+                    &nbsp;
+                  <span style="cursor: pointer;" (click)="add()"><img style="width: 40px; height:40px" src="https://w7.pngwing.com/pngs/535/334/png-transparent-computer-icons-add-button-logo-number-add-button-thumbnail.png" alt=""></span>
+                </td>
+
+            </tr>
+        </ng-container>
+     
+    </tbody>
+  </table>
+
+  <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="boxValid">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Employee Profile:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <table class="table table-striped ">
+             <tr>
+                 <th> P R O J E C T &nbsp; &nbsp; I D :</th>
+                 <td>{{employee.projectId}}</td>
+             </tr>
+             <tr>
+                <th> P R O J E C T &nbsp; &nbsp; N A M E :</th>
+                <td>{{employee.projectName}}</td>
+            </tr>  
+             <tr>
+                <th> P R O J E C T &nbsp; &nbsp; H E A D :</th>
+                <td>{{employee.projectHead}}</td>
+            </tr>
+            <tr>
+                <th> S T A R T &nbsp; &nbsp; D A T E :</th>
+                <td>{{employee.startDate}}</td>
+            </tr>
+         </table>
+        </div>
+        
+      </div>
+    </div>
+  </div>
